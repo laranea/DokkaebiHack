@@ -16,6 +16,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "AssetManager.h"
+#include <switch.h>
 
 AssetManager::AssetManager() {
     window = NULL;
@@ -53,9 +54,13 @@ AssetManager::~AssetManager() {
 
     IMG_Quit();
     SDL_Quit();
+
+    romfsExit();
 };
 
 bool AssetManager::initialize() {
+    romfsInit();
+
     SDL_Init(SDL_INIT_TIMER | SDL_INIT_VIDEO);
 
     if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
@@ -69,18 +74,18 @@ bool AssetManager::initialize() {
     if (!renderer)
         return false;
 
-    background = _loadAsset("/switch/DokkaebiHack/assets/background.png");
-    club_1 = _loadAsset("/switch/DokkaebiHack/assets/club_1.png");
-    club_2 = _loadAsset("/switch/DokkaebiHack/assets/club_2.png");
-    dokkaebi_1 = _loadAsset("/switch/DokkaebiHack/assets/dokkaebi_1.png");
-    dokkaebi_2 = _loadAsset("/switch/DokkaebiHack/assets/dokkaebi_2.png");
-    dokkaebi_3 = _loadAsset("/switch/DokkaebiHack/assets/dokkaebi_3.png");
-    snow_1 = _loadAsset("/switch/DokkaebiHack/assets/snow_1.png");
-    snow_2 = _loadAsset("/switch/DokkaebiHack/assets/snow_2.png");
-    snow_3 = _loadAsset("/switch/DokkaebiHack/assets/snow_3.png");
-    snow_4 = _loadAsset("/switch/DokkaebiHack/assets/snow_4.png");
-    snow_5 = _loadAsset("/switch/DokkaebiHack/assets/snow_5.png");
-    text = _loadAsset("/switch/DokkaebiHack/assets/text.png");
+    background = _loadAsset("romfs:/background.png");
+    club_1 = _loadAsset("romfs:/club_1.png");
+    club_2 = _loadAsset("romfs:/club_2.png");
+    dokkaebi_1 = _loadAsset("romfs:/dokkaebi_1.png");
+    dokkaebi_2 = _loadAsset("romfs:/dokkaebi_2.png");
+    dokkaebi_3 = _loadAsset("romfs:/dokkaebi_3.png");
+    snow_1 = _loadAsset("romfs:/snow_1.png");
+    snow_2 = _loadAsset("romfs:/snow_2.png");
+    snow_3 = _loadAsset("romfs:/snow_3.png");
+    snow_4 = _loadAsset("romfs:/snow_4.png");
+    snow_5 = _loadAsset("romfs:/snow_5.png");
+    text = _loadAsset("romfs:/text.png");
 
     return true;
 };

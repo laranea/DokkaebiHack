@@ -19,8 +19,8 @@
 #include "BackgroundView.h"
 
 void BackgroundView::render() {
-    for (int x = 0; x < 25; x++) {
-        for (int y = 0; y < 14; y++) {
+    for (int x = 0; x <= 25; x++) {
+        for (int y = 0; y <= 13; y++) {
             u8 snowType = *(snow + y * 25 + x);
             if (snowType > 4) {
                 SDL_Rect snowRect = { x * 50, y * 50, 50, 50};
